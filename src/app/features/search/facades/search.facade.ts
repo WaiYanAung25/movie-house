@@ -1,5 +1,5 @@
 import { Injectable, inject, signal, computed } from '@angular/core';
-import { Subject, debounceTime, distinctUntilChanged, catchError, of } from 'rxjs';
+import { Subject, debounceTime, catchError, of } from 'rxjs';
 import { MovieApiService } from '../services/search-api.service';
 import { MovieSearchResult } from '../../../models/movie.model';
 import { AppError } from '../../../core/errors/app-error.model';
@@ -84,9 +84,6 @@ export class SearchFacade {
   private setupSearchStream(): void {
     this.searchTrigger$.pipe(
       debounceTime(300),
-      distinctUntilChanged(
-        (prev, curr) => prev.query === curr.query && prev.year === curr.year && prev.minRating === curr.minRating
-      ),
     ).subscribe(({ query, year, minRating }) => {
       this.fetchPage(query, year, minRating, 1, false);
     });

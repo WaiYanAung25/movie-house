@@ -83,7 +83,7 @@ Angular Signals provide fine-grained reactivity with minimal boilerplate. They i
 
 RxJS is used only where Angular APIs return Observables:
 - `HttpClient` calls use `pipe()`, `map()`, `catchError()`
-- `debounceTime`, `distinctUntilChanged`, `switchMap` in the search stream
+- `debounceTime`, `switchMap` in the search stream
 - Angular `ActivatedRoute.queryParams` Observable for URL sync
 
 Manual subscriptions are avoided — signals handle all derived UI state.
